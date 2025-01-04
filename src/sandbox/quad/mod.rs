@@ -43,13 +43,13 @@ impl Sandbox {
         ];
 
         let pipeline_layout = device.create_pipeline_layout(&wgpu::PipelineLayoutDescriptor {
-            label: Some("render pipeline layout"),
+            label: Some("pipeline layout"),
             bind_group_layouts: &[],
             push_constant_ranges: &[],
         });
 
         let pipeline = device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {
-            label: Some("pipeline layout"),
+            label: Some("render pipeline"),
             layout: Some(&pipeline_layout),
             vertex: wgpu::VertexState {
                 module: &shader,

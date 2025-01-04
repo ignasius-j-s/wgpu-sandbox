@@ -52,13 +52,13 @@ impl Sandbox {
         let bind_group_layout = Texture::bind_group_layout(device);
 
         let pipeline_layout = device.create_pipeline_layout(&wgpu::PipelineLayoutDescriptor {
-            label: Some("render pipeline layout"),
+            label: Some("pipeline layout"),
             bind_group_layouts: &[&bind_group_layout],
             push_constant_ranges: &[],
         });
 
         let pipeline = device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {
-            label: Some("pipeline layout"),
+            label: Some("render pipeline"),
             layout: Some(&pipeline_layout),
             vertex: wgpu::VertexState {
                 module: &shader,
@@ -90,7 +90,7 @@ impl Sandbox {
         });
 
         let index_buffer = device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
-            label: Some("vertex buffer"),
+            label: Some("index buffer"),
             contents: bytemuck::cast_slice(indices),
             usage: wgpu::BufferUsages::INDEX,
         });
