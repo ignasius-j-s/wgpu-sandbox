@@ -68,7 +68,7 @@ impl GraphicsContext {
         surface.configure(&device, &config);
 
         // change this to switch between examples
-        let example = crate::sandbox::texture::Sandbox::new(&device, &queue, view_format);
+        let example = crate::sandbox::uniform::Sandbox::new(&device, view_format);
 
         Self {
             instance,
