@@ -81,6 +81,10 @@ impl ApplicationHandler for App {
                     },
                 ..
             } => event_loop.exit(),
+            WindowEvent::KeyboardInput { event, .. } => {
+                gfx_context.handle_input(event);
+                window.request_redraw();
+            }
             WindowEvent::ScaleFactorChanged { scale_factor, .. } => {
                 self.scale_factor = scale_factor
             }

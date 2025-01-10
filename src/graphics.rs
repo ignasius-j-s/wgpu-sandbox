@@ -1,8 +1,12 @@
 use std::sync::Arc;
 
-use winit::{dpi::PhysicalSize, window::Window};
+use winit::{dpi::PhysicalSize, event::KeyEvent, window::Window};
 
 pub trait Renderable {
+    fn handle_input(&mut self, key_event: KeyEvent, queue: &wgpu::Queue) {
+        let _ = key_event;
+        let _ = queue;
+    }
     fn update(&mut self) {}
     fn render(&self, render_pass: &mut wgpu::RenderPass);
 }
@@ -68,7 +72,7 @@ impl GraphicsContext {
         surface.configure(&device, &config);
 
         // change this to switch between examples
-        let example = crate::sandbox::uniform::Sandbox::new(&device, view_format);
+        let example = crate::sandbox::camera2d::Sandbox::new(&device, view_format);
 
         Self {
             instance,
@@ -114,6 +118,10 @@ impl GraphicsContext {
 
         self.queue.submit(Some(encoder.finish()));
         render_texture.present();
+    }
+
+    pub fn handle_input(&mut self, key_event: KeyEvent) {
+        self.renderable.handle_input(key_event, &self.queue);
     }
 
     pub fn resize(&mut self, size: PhysicalSize<u32>) {
