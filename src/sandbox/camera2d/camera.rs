@@ -21,7 +21,7 @@ impl Camera2D {
     }
 
     pub fn projection_matrix(&self) -> Mat4 {
-        Mat4::orthographic_rh(0.0, self.width, self.height, 0.0, 0.0, 100.0)
+        Mat4::orthographic_rh(0.0, self.width, self.height, 0.0, -1.0, 1.0)
     }
 
     pub fn view_matrix(&self) -> Mat4 {
